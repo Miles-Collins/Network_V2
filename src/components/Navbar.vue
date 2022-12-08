@@ -1,17 +1,23 @@
 <template>
   <nav class="navbar navbar-expand-lg px-3 row dork ">
-    <router-link class="navbar-brand d-flex col-1" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-end">
-        <img class="logo" alt="logo"
-          src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
+    <div class="col-3 navbar-brand d-flex align-items-center">
+      <router-link class="" :to="{ name: 'Home' }">
+        <div class="d-flex flex-column align-items-end">
+          <img class="logo" alt="logo"
+            src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
+        </div>
+      </router-link>
+      <div class="form-outline mx-1 px-0">
+        <input class="rounded-pill form-control p-0" id="search" type="search" placeholder="&nbsp Search..." />
       </div>
-    </router-link>
+    </div>
 
-    <button class="col-1 offset-2">HOME</button>
-    <button class="col-1 mx-2">ALUMNI</button>
-    <button class="col-1 mx-2">TEST</button>
-    <button class="col-1 mx-2">TEST</button>
-    <button class="col-1 mx-2">TEST</button>
+
+    <button class="col-1 mx-1">HOME</button>
+    <button class="col-1 mx-1">ALUMNI</button>
+    <button class="col-1 mx-1">TEST</button>
+    <button class="col-1 mx-1">TEST</button>
+    <button class="col-1 mx-1">TEST</button>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,5 +81,33 @@ a:hover {
   border-radius: 50%;
   height: 50px;
   width: 50px;
+}
+
+input#search {
+  background-color: #424244;
+  border: none;
+  height: 40px;
+  width: 100%;
+}
+
+input[type=text] {
+  width: 100px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+input:focus {
+  background-color: #424244;
+  color: #c1c3c4;
+  text-shadow: 1px 1px black;
+  border: none;
+  outline: none;
+}
+
+input:-webkit-autofill {
+  background-color: #424244;
+}
+
+.form-outline {
+  width: 100%;
 }
 </style>

@@ -68,4 +68,14 @@ input {
   margin-bottom: 2px;
   border: none;
 }
+
+textarea:focus {
+  background-color: #252526;
+  color: #6d757d;
+}
+
+input:focus {
+  background-color: #252526;
+  color: #6d757d;
+}
 </style>

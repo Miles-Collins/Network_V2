@@ -25,8 +25,12 @@
       </div>
     </div>
     <img class="postImg" :src=post.imgUrl alt="">
-    <div class="div my-2 text-start">
-      <i class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
+    <div v-if="!post.likes.includes(account.id)" class="div my-2 text-start">
+      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
+      &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
+    </div>
+    <div v-if="post.likes.includes(account.id)" class="div my-2 text-start">
+      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart"> {{ post.likes.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
     </div>
   </div>
@@ -56,11 +60,22 @@ export default {
     })
     const router = useRouter()
     const deleting = ref(false)
+    const likesId = props.post
     // const likesName = props.post.likes[0].name
     return {
       // likesName,
       deleting,
       account: computed(() => AppState.account),
+
+      async likePost(postId, userId) {
+        try {
+          await postsService.likePost(postId, userId)
+        } catch (error) {
+          console.error(error)
+          // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      },
 
       profilePush() {
         try {
@@ -109,6 +124,7 @@ export default {
 .postBg {
   background-image: url(`props.posts.creator.picture`);
 }
+
 
 .dork {
   background-color: #252526;

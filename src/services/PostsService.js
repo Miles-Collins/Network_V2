@@ -20,7 +20,8 @@ class PostsService {
     AppState.posts.unshift(res.data);
   }
 
-  async createLike(postId) {
+  async likePost(postId, userId) {
+    console.log("[POSTID]", postId + "[USERID]", userId);
     const res = await api.post(`api/posts/${postId}/like`);
     console.log("[CREATED LIKE]", res.data);
   }

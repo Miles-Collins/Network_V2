@@ -91,7 +91,7 @@ export default {
 }
 
 .scroll::-webkit-scrollbar-thumb {
-  background: red;
+  background: #424244;
 }
 
 body {
