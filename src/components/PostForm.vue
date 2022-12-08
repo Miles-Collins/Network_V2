@@ -7,7 +7,7 @@
       v-model="editable.body"></textarea>
     <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
     <button class="btn btn-primary mt-2" type="submit">
-      <i class="mdi mdi-send"><span>Post</span></i>
+      <span>Post </span><i class="mdi mdi-send"></i>
     </button>
   </form>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="bgProfile mb-5">
     <div class="row d-flex justify-content-center">
-      <div class="col-8">
+      <div class="col-10">
         <img class="coverImg" :src="profile.coverImg" alt="">
       </div>
     </div>
@@ -10,9 +10,9 @@
         <img class="movement" :src="profile.picture" alt="">
       </div>
 
-      <div class="col-2 px-0 mx-0">
+      <div class="col-5 px-0 mx-0">
         <h1 class="text-light mt-4">{{ profile.name }}</h1>
-        <a v-if="profile.github" :href="profile.github"> <img class="icon"
+        <a v-if="profile.github" :href="profile.github"> <img class="icon mx-2"
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" srcset=""></a>
         <a v-if="profile.linkedin" :href="profile.linkedin"> <img class="icon mx-2"
             src="https://openvisualfx.com/wp-content/uploads/2019/10/linkedin-icon-logo-png-transparent.png" alt=""
@@ -53,7 +53,7 @@
 
 <script>
 import { computed } from "@vue/reactivity"
-import { onMounted } from "vue"
+import { onMounted, onUnmounted } from "vue"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
 import PostForm from "../components/PostForm.vue"
@@ -67,7 +67,22 @@ export default {
     onMounted(() => {
       getPosts();
       getProfile();
-    });
+      doTheThing();
+    })
+    onUnmounted(() => {
+      doTheThing()
+    })
+
+    function doTheThing() {
+      try {
+        profileService.doTheThing()
+      } catch (error) {
+        console.error(error)
+        // @ts-ignore 
+        Pop.error(('[ERROR]'), error.message)
+      }
+    }
+
     async function getPosts() {
       try {
         console.log(route.params.id);

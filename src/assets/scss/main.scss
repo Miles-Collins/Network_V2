@@ -8,9 +8,13 @@ body{
   overscroll-behavior: none;
 }
 
+.text-shadow {
+  text-shadow: 2px 2px black;
+}
+
 #app {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100vh;
   background-color: var(--body-bg);
 }

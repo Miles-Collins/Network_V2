@@ -16,12 +16,32 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { AppState } from '../AppState'
+import { profileService } from "../services/ProfileService"
 export default {
   setup() {
-    return {
-      account: computed(() => AppState.account)
+    onMounted(() => {
+      doTheThing()
+    })
+    onUnmounted(() => {
+      doTheThing()
+    })
+
+    function doTheThing() {
+      try {
+        profileService.doTheThing()
+      } catch (error) {
+        console.error(error)
+        // @ts-ignore 
+        Pop.error(('[ERROR]'), error.message)
+      }
+    }
+
+    {
+      return {
+        account: computed(() => AppState.account)
+      }
     }
   }
 }
