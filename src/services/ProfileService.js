@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AppState } from "../AppState";
 import { api } from "./AxiosService";
 
@@ -43,10 +44,21 @@ class ProfileService {
     let res = await api.get(`api/profiles/${id}/posts`);
     console.log("[PROFILE POSTS]", res.data.posts);
     AppState.profilePost = res.data.posts;
+    AppState.profilePreviousPage = res.data.older;
+    AppState.profileNextPage = res.data.newer;
+    console.log(
+      "[PROFILE PREVIOUS PAGE]",
+      res.data.older + "[PROFILE NEXT PAGE]".res.data.newer
+    );
   }
 
   doTheThing() {
     AppState.theThing = !AppState.theThing;
+  }
+
+  async pageNext(nextPage) {
+    const res = await axios.get(nextPage);
+    console.log("[PROFILE NEXT PAGE]", res.data);
   }
 }
 

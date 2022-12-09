@@ -7,17 +7,23 @@
             src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
         </div>
       </router-link>
-      <div class="form-outline mx-1 px-0">
-        <input class="rounded-pill form-control p-0" id="search" type="search" placeholder="&nbsp Search..." />
-      </div>
+      <form @submit.prevent="search" class="form-outline mx-1 px-0">
+        <input v-model="query" class="rounded-pill form-control p-0 " id="search" type="search"
+          placeholder="&nbsp Search..." />
+        <!-- <button class="btn btn-outline-dark text-light" type="submit">
+          <i class="text-dark mdi mdi-magnify"></i>
+        </button> -->
+      </form>
     </div>
 
 
-    <button class="col-1 mx-1">HOME</button>
-    <button class="col-1 mx-1">ALUMNI</button>
-    <button class="col-1 mx-1">TEST</button>
-    <button class="col-1 mx-1">TEST</button>
-    <button class="col-1 mx-1">TEST</button>
+    <div class="col-1 mx-1 specialMargin text-center selectable p-0 m-0 imgIconDiv mdi mdi-home-outline"></div>
+    <div @click.prevent="graduated" class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-school-outline">
+    </div>
+    <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-store-outline"></div>
+    <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-calendar-check-outline"></div>
+    <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-pokemon-go"></div>
+
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,10 +45,39 @@
 </template>
 
 <script>
+import { ref } from "vue"
+import { postsService } from "../services/PostsService"
+import Pop from "../utils/Pop"
 import Login from './Login.vue'
 export default {
   setup() {
-    return {}
+    const query = ref('')
+
+    return {
+      query,
+
+      async graduated() {
+        try {
+          await postsService.graduated()
+        } catch (error) {
+          console.error(error)
+          // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      },
+
+      async search() {
+        try {
+          console.log('[SEARCH PARAMETERS]', query.value);
+          await postsService.search(query.value)
+        } catch (error) {
+          console.error(error)
+          // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      }
+
+    }
   },
   components: { Login }
 }
@@ -109,5 +144,27 @@ input:-webkit-autofill {
 
 .form-outline {
   width: 100%;
+}
+
+.imgIconDiv {
+  color: white;
+  font-size: 40px;
+}
+
+.imgIcon:active {
+  color: blue;
+}
+
+.imgIconDiv:active {
+  border: 2px solid #424244;
+  color: #dcdedf;
+}
+
+.imgIconDiv:hover {
+  border: 2px solid #424244;
+}
+
+.specialMargin {
+  margin-left: 50px !important;
 }
 </style>

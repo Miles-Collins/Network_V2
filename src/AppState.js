@@ -11,4 +11,8 @@ export const AppState = reactive({
   ads: [],
   peopleYouMayKnow: [],
   theThing: false,
+  nextPage: {},
+  previousPage: {},
+  profileNextPage: {},
+  profilePreviousPage: {},
 });

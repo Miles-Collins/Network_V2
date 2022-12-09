@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AppState } from "../AppState";
 import { Post } from "../models/Post.js";
 import { api } from "./AxiosService";
@@ -38,6 +39,26 @@ class PostsService {
   async edit(postId, postData) {
     const res = await api.put(`api/posts/${postId}`, postData);
     console.log("[EDITED POST]", res.data);
+  }
+
+  async search(query) {
+    const res = await api.get(`api/posts?query=${query}`);
+    console.log("[SEARCH RESULTS]", res.data.posts);
+    AppState.posts = res.data.posts;
+  }
+
+  async pageNext(nextPage) {
+    const res = await axios.get(nextPage);
+    console.log("[NEXT PAGE]", res.data);
+    AppState.posts = res.data.posts;
+    AppState.nextPage = res.data.older;
+    AppState.previousPage = res.data.newer;
+  }
+
+  async graduated() {
+    const res = await api.get(`api/posts?graduated=true}`);
+    console.log("[GRADUATED]", res.data);
+    AppState.posts = res.data.posts;
   }
 }
 

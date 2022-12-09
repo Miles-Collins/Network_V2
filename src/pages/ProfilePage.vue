@@ -6,8 +6,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-2 offset-2">
-        <img class="movement" :src="profile.picture" alt="">
+      <div class="col-2 offset-2 parent">
+
+        <img class="movement parent" :src="profile.picture" alt="">
+        <div class="pleaseWork   graduated text-light mdi mdi-school-outline" v-if="(profile.graduated == true)">
+        </div>
+
       </div>
 
       <div class="col-5 px-0 mx-0">
@@ -22,16 +26,6 @@
       </div>
     </div>
   </div>
-
-
-  <!-- <h1>{{ profile.name }}</h1>
-  <p>{{ profile.bio }}</p>
-  <p>Class: {{ profile.class }}</p>
-  <span>Has Graduated: {{ profile.graduated }}</span> <br>
-  <span>Github: {{ profile.github }}</span> <br>
-  <span>LinkedIn: {{ profile.linkedin }}</span> <br>
-  <span>Resume: {{ profile.resume }}</span> <br>
-  <span>Email: {{ profile.email }}</span> <br> -->
 
   <div class="row justify-content-center">
     <div class="col-4 justify-content-center">
@@ -48,6 +42,9 @@
       </div>
     </div>
   </div>
+
+
+  <div @click.prevent="pageNext(nextPage)" class="downArrow mdi mdi-arrow-down-thin-circle-outline"></div>
 
 </template>
 
@@ -107,7 +104,20 @@ export default {
     }
     return {
       profile: computed(() => AppState.activeProfile),
-      posts: computed(() => AppState.profilePost)
+      posts: computed(() => AppState.profilePost),
+      nextPage: computed(() => AppState.profileNextPage),
+      previousPage: computed(() => AppState.profilePreviousPage),
+
+      async pageNext(nextPage) {
+        try {
+          debugger
+          await profileService.pageNext(nextPage)
+        } catch (error) {
+          console.error(error)
+          // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      }
     };
   },
   components: { PostForm }
@@ -140,5 +150,38 @@ export default {
 .bgProfile {
   background: rgb(37, 37, 38);
   background: linear-gradient(360deg, rgba(37, 37, 38, 1) 36%, rgba(62, 62, 62, 1) 64%, rgba(196, 196, 196, 1) 100%);
+}
+
+.graduated {
+  z-index: 1000;
+  position: absolute;
+  top: 45%;
+  right: 15%;
+  font-size: 2rem;
+  border-radius: 50%;
+  background-color: #414144;
+  border: 3px #252526 solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pleaseWork {
+  height: 50px;
+  width: 50px;
+}
+
+.parent {
+  position: relative;
+}
+
+.downArrow {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.165);
+  font-size: 75px;
+}
+
+.downArrow:hover {
+  color: rgba(255, 255, 255, 0.466);
 }
 </style>

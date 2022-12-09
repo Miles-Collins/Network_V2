@@ -3,17 +3,17 @@
   <div class="my-3 card dork mx-0 px-0 ">
     <div class="row">
       <div class="col-1">
-        <img @click="profilePush()" class="avatar" :src=post.creator.picture alt="Profile Picture"
-          :title="post.creator.name">
+        <img @click="profilePush()" class="avatar" :src=post.creator?.picture alt="Profile Picture"
+          :title="post.creator?.name">
       </div>
       <div class="col-6 text-start mx-4 mt-2">
-        <span class="">{{ post.creator.name }}</span> <br>
+        <span class="">{{ post.creator?.name }}</span> <br>
         <span>{{ new Date(post.createdAt).toDateString('us-en') }} </span><span>&nbsp</span><span> {{ new
             Date(post.createdAt).toLocaleTimeString('us-en')
         }}</span>
       </div>
       <div class="col-1 offset-3">
-        <div v-if="post.creator.id == account.id">
+        <div v-if="post.creator?.id == account?.id">
           <button class="btn btn-outline text-light" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i>
           </button>
         </div>
@@ -25,12 +25,12 @@
       </div>
     </div>
     <img class="postImg" :src=post.imgUrl alt="">
-    <div v-if="!post.likes.includes(account.id)" class="div my-2 text-start">
-      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
+    <div v-if="!post.likes?.includes(account.id)" class="div my-2 text-start">
+      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes?.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
     </div>
-    <div v-if="post.likes.includes(account.id)" class="div my-2 text-start">
-      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart"> {{ post.likes.length }}</i>
+    <div v-if="post.likes?.includes(account.id)" class="div my-2 text-start">
+      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart"> {{ post.likes?.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
     </div>
   </div>

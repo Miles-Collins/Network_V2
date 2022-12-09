@@ -10,7 +10,7 @@
       <div class="col-3 scroll">
         <LeftBar />
       </div>
-      <div class="col-6 scroll">
+      <div id="top" class="col-6 scroll">
         <router-view />
       </div>
       <div class="col-3 mx-0 px-0 scroll">
@@ -112,5 +112,9 @@ main {
 
 .width {
   width: 100vw;
+}
+
+#top {
+  scroll-behavior: smooth;
 }
 </style>
