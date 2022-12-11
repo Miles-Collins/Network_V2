@@ -24,7 +24,8 @@
         <p class="my-2">{{ post.body }}</p>
       </div>
     </div>
-    <img class="postImg" :src=post.imgUrl alt="">
+    <img v-if="post.imgUrl" class="postImg" :src=post.imgUrl alt="">
+    <img v-if="!post.imgUrl" class="postImg" :src="randomImage" alt="" srcset="">
     <div v-if="!post.likes?.includes(account.id)" class="div my-2 text-start">
       <i @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes?.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
@@ -56,14 +57,18 @@ export default {
 
   setup(props) {
     onMounted(() => {
-      // console.log('[POSTCARD PROPS]', likesName);
+      // console.log('[POSTCARD PROPS]', randomNumber);
     })
     const router = useRouter()
     const deleting = ref(false)
     const likesId = props.post
+    const randomImages = ["https://images.unsplash.com/photo-1669111957903-36e4da270ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1670163424242-9e74c17a9d76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1639039821731-0cf4a6c009b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80", "https://images.unsplash.com/photo-1670239511435-922fcc026bf4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", "https://images.unsplash.com/photo-1666930329254-47fd6b6a1de9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2168&q=80", "https://images.unsplash.com/photo-1663947719146-d2dcfbe6875a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"]
+    const randomNumber = Math.floor(Math.random() * randomImages.length)
+    const randomImage = randomImages[randomNumber]
     // const likesName = props.post.likes[0].name
     return {
       // likesName,
+      randomImage,
       deleting,
       account: computed(() => AppState.account),
 
