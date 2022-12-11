@@ -15,4 +15,5 @@ export const AppState = reactive({
   previousPage: {},
   profileNextPage: {},
   profilePreviousPage: {},
+  cars: [],
 });

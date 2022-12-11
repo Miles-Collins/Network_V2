@@ -17,10 +17,12 @@
     </div>
 
 
-    <div class="col-1 mx-1 specialMargin text-center selectable p-0 m-0 imgIconDiv mdi mdi-home-outline"></div>
+    <div @click="reRoute('Home')"
+      class="col-1 mx-1 specialMargin text-center selectable p-0 m-0 imgIconDiv mdi mdi-home-outline"></div>
     <div @click.prevent="graduated" class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-school-outline">
     </div>
-    <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-store-outline"></div>
+    <div @click="reRoute('Market')" class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-store-outline">
+    </div>
     <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-calendar-check-outline"></div>
     <div class="col-1 mx-1 text-center selectable p-0 m-0 imgIconDiv mdi mdi-pokemon-go"></div>
 
@@ -46,6 +48,7 @@
 
 <script>
 import { ref } from "vue"
+import { router } from "../router"
 import { postsService } from "../services/PostsService"
 import Pop from "../utils/Pop"
 import Login from './Login.vue'
@@ -55,6 +58,17 @@ export default {
 
     return {
       query,
+
+      reRoute(page) {
+        try {
+          // console.log(props.post.creator.id);
+          router.push({ name: `${page}` })
+        } catch (error) {
+          console.error(error)
+          // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      },
 
       async graduated() {
         try {

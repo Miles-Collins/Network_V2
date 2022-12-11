@@ -56,9 +56,11 @@ class PostsService {
   }
 
   async graduated() {
-    const res = await api.get(`api/posts?graduated=true}`);
-    console.log("[GRADUATED]", res.data);
-    AppState.posts = res.data.posts;
+    const res = await api.get(`api/posts`);
+    let graduate = res.data.posts;
+    graduate = graduate.filter((p) => p.creator.graduated == true);
+    console.log("[RES DATA]", res.data.posts, "[GRADUATED]", graduate);
+    AppState.posts = graduate;
   }
 }
 

@@ -46,10 +46,10 @@ class ProfileService {
     AppState.profilePost = res.data.posts;
     AppState.profilePreviousPage = res.data.older;
     AppState.profileNextPage = res.data.newer;
-    console.log(
-      "[PROFILE PREVIOUS PAGE]",
-      res.data.older + "[PROFILE NEXT PAGE]".res.data.newer
-    );
+    // console.log(
+    //   "[PROFILE PREVIOUS PAGE]",
+    //   res.data.older + "[PROFILE NEXT PAGE]".res.data.newer
+    // );
   }
 
   doTheThing() {
