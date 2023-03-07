@@ -2,14 +2,16 @@ import axios from "axios";
 import { AppState } from "../AppState";
 import { Post } from "../models/Post.js";
 import { api } from "./AxiosService";
+import { logger } from "../utils/Logger";
 
 class PostsService {
   async getById(postId) {
     const res = await api.get(`api/posts/${postId}`);
+    logger.log("Miles => PostsService => getById => res", res.data);
   }
+
   async getAll() {
     const res = await api.get(`api/posts`);
-    console.log("[POSTS]", res.data);
     AppState.posts = res.data.posts;
     AppState.previousPage = res.data.newer;
     AppState.nextPage = res.data.older;
@@ -18,6 +20,10 @@ class PostsService {
   async create(postData) {
     const res = await api.post(`api/posts`, postData);
     console.log("[CREATED POST]", res.data);
+    console.log(
+      "🚀 ~ file: PostsService.js:25 ~ PostsService ~ create ~ res",
+      res.data
+    );
     AppState.posts.unshift(res.data);
   }
 

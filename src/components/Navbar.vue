@@ -3,8 +3,7 @@
     <div class="col-3 navbar-brand d-flex align-items-center">
       <router-link class="" :to="{ name: 'Home' }">
         <div class="d-flex flex-column align-items-end">
-          <img class="logo" alt="logo"
-            src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
+          <img class="logo" alt="logo" src="src/assets/img/AnotherOne.png" />
         </div>
       </router-link>
       <form @submit.prevent="search" class="form-outline mx-1 px-0">
@@ -65,7 +64,7 @@ export default {
           router.push({ name: `${page}` })
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       },
@@ -75,7 +74,7 @@ export default {
           await postsService.graduated()
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       },
@@ -86,7 +85,7 @@ export default {
           await postsService.search(query.value)
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       }
