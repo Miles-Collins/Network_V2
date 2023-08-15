@@ -27,7 +27,7 @@ export default {
       }
       catch (error) {
         console.error(error);
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(("[ERROR]"), error.message);
       }
     }

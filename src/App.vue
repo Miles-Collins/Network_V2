@@ -43,6 +43,7 @@ import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import { adsService } from "./services/AdsService"
+import Pop from './utils/Pop.js'
 
 export default {
   setup() {
@@ -55,7 +56,7 @@ export default {
         await adsService.getAds()
       } catch (error) {
         console.error(error)
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(('[ERROR]'), error.message)
       }
     }
