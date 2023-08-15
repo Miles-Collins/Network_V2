@@ -19,6 +19,7 @@
 import { computed, onMounted, onUnmounted } from "vue";
 import { AppState } from "../AppState";
 import { profileService } from "../services/ProfileService";
+import Pop from "../utils/Pop.js";
 export default {
   setup() {
     onMounted(() => {
