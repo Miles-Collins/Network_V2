@@ -1,55 +1,55 @@
 <template>
   <div class="row d-flex justify-content-center">
     <div class="col-8">
-      <img class="coverImg" :src="account.coverImg" alt="">
+      <img class="coverImg" :src="account.coverImg" alt="" />
     </div>
   </div>
   <div class="row">
     <div class="col-2 offset-2">
       <div class="about">
-        <img class="movement" :src="account.picture" alt="">
+        <img class="movement" :src="account.picture" alt="" />
       </div>
     </div>
   </div>
 
-  <AccountForm />
+  <AccountForm v-if="account" />
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue'
-import { AppState } from '../AppState'
-import { profileService } from "../services/ProfileService"
+import { computed, onMounted, onUnmounted } from "vue";
+import { AppState } from "../AppState";
+import { profileService } from "../services/ProfileService";
 export default {
   setup() {
     onMounted(() => {
-      doTheThing()
-    })
+      doTheThing();
+    });
     onUnmounted(() => {
-      doTheThing()
-    })
+      doTheThing();
+    });
 
     function doTheThing() {
       try {
-        profileService.doTheThing()
+        profileService.doTheThing();
       } catch (error) {
-        console.error(error)
-        // @ts-ignore 
-        Pop.error(('[ERROR]'), error.message)
+        console.error(error);
+        // @ts-ignore
+        Pop.error("[ERROR]", error.message);
       }
     }
 
     {
       return {
-        account: computed(() => AppState.account)
-      }
+        account: computed(() => AppState.account),
+      };
     }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 .coverImg {
-  height: 50VH;
+  height: 50vh;
   width: 100%;
   object-fit: cover;
 }

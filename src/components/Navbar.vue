@@ -3,7 +3,7 @@
     <div class="col-3 navbar-brand d-flex align-items-center">
       <router-link class="" :to="{ name: 'Home' }">
         <div class="d-flex flex-column align-items-end">
-          <img class="logo" alt="logo" src="src/assets/img/AnotherOne.png" />
+          <img class="logo" alt="logo" src="../assets/img/AnotherOne.png" />
         </div>
       </router-link>
       <form @submit.prevent="search" class="form-outline mx-1 px-0">
