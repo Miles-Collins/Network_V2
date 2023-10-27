@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  <div v-if="profile" class="row justify-content-center">
     <div class="col-10 justify-content-center">
       <PostForm v-if="profile.id" />
     </div>
@@ -51,7 +51,7 @@ export default {
       }
       catch (error) {
         console.error(error);
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(("[ERROR]"), error.message);
       }
     }
@@ -60,7 +60,7 @@ export default {
         await profileService.getProfiles()
       } catch (error) {
         console.error(error)
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(('[ERROR]'), error.message)
       }
     }
@@ -78,7 +78,7 @@ export default {
           await postsService.pageNext(page)
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       }

@@ -1,6 +1,6 @@
 <template>
 
-  <div class="my-3 card dork mx-0 px-0 ">
+  <div v-if="account" class="my-3 card dork mx-0 px-0 ">
     <div class="row">
       <div class="col-1">
         <img @click="profilePush()" class="avatar" :src=post.creator?.picture alt="Profile Picture"
@@ -27,11 +27,11 @@
     <img v-if="post.imgUrl" class="postImg" :src=post.imgUrl alt="">
     <img v-if="!post.imgUrl" class="postImg" :src="randomImage" alt="" srcset="">
     <div v-if="!post.likes?.includes(account.id)" class="div my-2 text-start">
-      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes?.length }}</i>
+      <i role="button" @click="likePost(post.id, account.id)" class="mdi mdi-heart-outline"> {{ post.likes?.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
     </div>
     <div v-if="post.likes?.includes(account.id)" class="div my-2 text-start">
-      <i @click="likePost(post.id, account.id)" class="mdi mdi-heart"> {{ post.likes?.length }}</i>
+      <i role="button" @click="likePost(post.id, account.id)" class="mdi text-danger mdi-heart"> {{ post.likes?.length }}</i>
       &nbsp;<span> {{ post?.likes[0]?.name }}...</span>
     </div>
   </div>
@@ -77,7 +77,7 @@ export default {
           await postsService.likePost(postId, userId)
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       },
@@ -88,7 +88,7 @@ export default {
           router.push({ name: 'Profile', params: { id: props.post.creator.id } })
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       },

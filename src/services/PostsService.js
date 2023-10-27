@@ -31,6 +31,7 @@ class PostsService {
     console.log("[POSTID]", postId + "[USERID]", userId);
     const res = await api.post(`api/posts/${postId}/like`);
     console.log("[CREATED LIKE]", res.data);
+    const postIndex = AppState.posts.findIndex((post) => post.id == postId);
   }
 
   // FIXME this is deleting the post but also hiding all the other posts on delete

@@ -1,6 +1,6 @@
 <template>
-
-  <div class='row d-flex justify-content-center'>
+  <div v-if="account">
+      <div class='row d-flex justify-content-center'>
 
     <router-link :to="{ name: 'Account' }" class="col-12 mt-3 selectable">
       <img v-if="account.id" class="mt-1 circle" :src="account.picture">
@@ -60,6 +60,8 @@
     <img v-if="account.id" class="mt-1 circle"
       src="https://cdn1.iconfinder.com/data/icons/seo-outline-colored-5/128/target_group_group_People_Friends_Group_Conversation_Team_Community-512.png">
     <span class="text-center mt-3 font">&nbsp; News</span>
+  </div>
+
   </div>
 
 

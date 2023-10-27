@@ -28,7 +28,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-4 justify-content-center">
+    <div class="col-10 col-lg-6 justify-content-center">
       <div class="row">
         <PostForm />
       </div>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-4 justify-content-center">
+    <div class="col-10 col-lg-6 justify-content-center">
       <div class="text-center row" v-for="p in posts" :key="p.id">
         <PostCard :post="p" />
       </div>
@@ -75,7 +75,7 @@ export default {
         profileService.doTheThing()
       } catch (error) {
         console.error(error)
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(('[ERROR]'), error.message)
       }
     }
@@ -88,7 +88,7 @@ export default {
       }
       catch (error) {
         console.error(error);
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(("[ERROR]"), error.message);
       }
     }
@@ -98,7 +98,7 @@ export default {
       }
       catch (error) {
         console.error(error);
-        // @ts-ignore 
+        // @ts-ignore
         Pop.error(("[ERROR]"), error.message);
       }
     }
@@ -114,7 +114,7 @@ export default {
           await profileService.pageNext(nextPage)
         } catch (error) {
           console.error(error)
-          // @ts-ignore 
+          // @ts-ignore
           Pop.error(('[ERROR]'), error.message)
         }
       }

@@ -157,10 +157,7 @@ export default {
     const editable = ref({});
 
     watchEffect(() => {
-      if (!AppState.account) {
-        return;
-      }
-      editable.value = { ...AppState.account };
+      editable.value = AppState.account;
     });
 
     return {
